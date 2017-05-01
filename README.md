@@ -17,7 +17,6 @@ A UI should be visible on port 8081 of host where the above command was run. Exa
 ```
 spark-submit --deploy-mode cluster --master mesos://hostname:7077 \
              --conf spark.mesos.executor.docker.image=alahiff/spark-on-mesos:2.1.0-3 \
-             --conf spark.mesos.coarse=true \
              --conf spark.cores.max=8 \
              --conf spark.mesos.principal=<principal> \
              --conf spark.mesos.secret=<secret> \
