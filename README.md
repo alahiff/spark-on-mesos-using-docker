@@ -1,7 +1,9 @@
 # Spark on Mesos
 Example running Spark on Mesos in cluster mode using Docker containers.
 
-Run the Mesos cluster dispatcher:
+The image used was taken from https://gitlab.cern.ch/benoel/spark-on-mesos, but updated to use Spark 2.1.0 and a correction made to ensure that cluster mode works correctly.
+
+Run the MesosClusterDispatcher:
 ```
 docker run --rm -it --net=host -v /opt/spark.conf:/etc/spark.conf:ro \
   alahiff/spark-on-mesos:2.1.0-3 spark-class org.apache.spark.deploy.mesos.MesosClusterDispatcher \
@@ -22,4 +24,4 @@ spark-submit --deploy-mode cluster --master mesos://hostname:7077 \
              --conf spark.mesos.role= \
              --class org.apache.spark.examples.SparkPi https://downloads.mesosphere.com/spark/assets/spark-examples_2.10-1.4.0-SNAPSHOT.jar 30
 ```
-where here the principal and secret need to be specified (or removed) and a role specified if necessary (or removed).
+where here the principal and secret need to be specified (or removed), a role specified if necessary (or removed) and `hostname` should be replaced by the name of the host where the MesosClusterDispatcher is running.
