@@ -1,5 +1,5 @@
 # Spark on Mesos
-Example running Spark on Mesos using Docker containers
+Example running Spark on Mesos in cluster mode using Docker containers.
 
 Run the Mesos cluster dispatcher:
 ```
@@ -9,3 +9,4 @@ docker run --rm -it --net=host -v /opt/spark.conf:/etc/spark.conf:ro \
   --name spark \
   --properties-file /etc/spark.conf
   ```
+where here the image name, Mesos master and spark.conf location should be replaced as approprate.
