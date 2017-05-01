@@ -19,9 +19,9 @@ spark-submit --deploy-mode cluster --master mesos://hostname:7077 \
              --conf spark.mesos.executor.docker.image=alahiff/spark-on-mesos:2.1.0-3 \
              --conf spark.mesos.coarse=true \
              --conf spark.cores.max=8 \
-             --conf spark.mesos.principal= \
-             --conf spark.mesos.secret= \
-             --conf spark.mesos.role= \
+             --conf spark.mesos.principal=<principal> \
+             --conf spark.mesos.secret=<secret> \
+             --conf spark.mesos.role=<role> \
              --class org.apache.spark.examples.SparkPi https://downloads.mesosphere.com/spark/assets/spark-examples_2.10-1.4.0-SNAPSHOT.jar 30
 ```
 where here the principal and secret need to be specified (or removed), a role specified if necessary (or removed) and `hostname` should be replaced by the name of the host where the MesosClusterDispatcher is running.
