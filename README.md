@@ -13,7 +13,7 @@ docker run --rm -it --net=host -v /opt/spark.conf:/etc/spark.conf:ro \
   ```
 where here the image name, Mesos master and `spark.conf` location should be replaced as approprate. The contents of `spark.conf` also need to checked: if framework authentication is enabled the principal and secret should be specifed (or the lines removed if framework authentication is not used), a role should be specified if needed and the image specified.
 
-A AUI should not be visible on port 8081 of host where the above command was run. Example launching a Spark driver:
+A UI should be visible on port 8081 of host where the above command was run. Example launching a Spark job:
 ```
 spark-submit --deploy-mode cluster --master mesos://hostname:7077 \
              --conf spark.mesos.executor.docker.image=alahiff/spark-on-mesos:2.1.0-3 \
