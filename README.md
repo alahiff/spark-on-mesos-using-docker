@@ -4,9 +4,22 @@ Example running Spark on Mesos in cluster mode using Docker containers.
 Run the Mesos cluster dispatcher:
 ```
 docker run --rm -it --net=host -v /opt/spark.conf:/etc/spark.conf:ro \
-  <image name> spark-class org.apache.spark.deploy.mesos.MesosClusterDispatcher \
+  alahiff/spark-on-mesos:2.1.0-3 spark-class org.apache.spark.deploy.mesos.MesosClusterDispatcher \
   --master mesos://zk://<mesos master>:2181/mesos \
   --name spark \
   --properties-file /etc/spark.conf
   ```
-where here the image name, Mesos master and spark.conf location should be replaced as approprate.
+where here the image name, Mesos master and `spark.conf` location should be replaced as approprate. The contents of `spark.conf` also need to checked: if framework authentication is enabled the principal and secret should be specifed (or the lines removed if framework authentication is not used), a role should be specified if needed and the image specified.
+
+A AUI should not be visible on port 8081 of host where the above command was run. Example launching a Spark driver:
+```
+spark-submit --deploy-mode cluster --master mesos://hostname:7077 \
+             --conf spark.mesos.executor.docker.image=alahiff/spark-on-mesos:2.1.0-3 \
+             --conf spark.mesos.coarse=true \
+             --conf spark.cores.max=8 \
+             --conf spark.mesos.principal= \
+             --conf spark.mesos.secret= \
+             --conf spark.mesos.role= \
+             --class org.apache.spark.examples.SparkPi https://downloads.mesosphere.com/spark/assets/spark-examples_2.10-1.4.0-SNAPSHOT.jar 30
+```
+where here the principal and secret need to be specified (or removed) and a role specified if necessary (or removed).
