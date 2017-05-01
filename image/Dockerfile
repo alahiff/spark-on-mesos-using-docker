@@ -27,5 +27,4 @@ ENV SCALA_HOME /usr/local/share/scala
 ENV PATH $PATH:$SCALA_HOME/bin
 ENV SPARK_HOME /opt/spark
 ENV PATH $PATH:/opt/spark/bin
-ENV MESOS_NATIVE_JAVA_LIBRARY /usr/local/lib/libmesos.so
 WORKDIR /opt/spark
