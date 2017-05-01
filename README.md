@@ -1,5 +1,5 @@
 # Spark on Mesos
-Example running Spark on Mesos in cluster mode using Docker containers.
+Example running Spark on Mesos in cluster mode using Docker containers. Spark binaries don't need to be pre-installed on any nodes in the cluster.
 
 The image used was taken from https://gitlab.cern.ch/benoel/spark-on-mesos, but updated to use Spark 2.1.0 and a correction made to ensure that cluster mode works correctly.
 
